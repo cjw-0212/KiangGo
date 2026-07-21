@@ -1,8 +1,7 @@
 name: Moderation - Stale Issues & PR
 
 on:
-  schedule:
-    - cron: 0 1 * * *
+  workflow_dispatch: {}
 
 permissions:
   issues: write

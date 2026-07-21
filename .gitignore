@@ -3,6 +3,7 @@ VS*/*
 VSCode*
 VSCodium*
 .DS_Store
+.idea/
 *.env
 assets/
 build/linux/appimage/out
