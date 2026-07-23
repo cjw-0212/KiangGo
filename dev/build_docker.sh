@@ -3,7 +3,10 @@
 
 exists() { type -t "$1" &> /dev/null; }
 
-export APP_NAME="VSCodium"
+export APP_NAME="KiangGo"
+export BINARY_NAME="${BINARY_NAME:-kianggo}"
+export DISABLE_UPDATE="${DISABLE_UPDATE:-yes}"
+export ORG_NAME="${ORG_NAME:-KiangGo}"
 export CI_BUILD="no"
 export OS_NAME="linux"
 export SHOULD_BUILD="yes"

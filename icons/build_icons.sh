@@ -37,13 +37,17 @@ check_programs "icns2png" "composite" "convert" "png2icns" "icotool" "rsvg-conve
 
 if ! declare -F load_linux_png &>/dev/null; then
   load_linux_png() {
-    wget "https://raw.githubusercontent.com/VSCodium/icons/main/icons/linux/circle1/${COLOR}/paulo22s.png" -O "$1"
+    # Generate from local brand SVG instead of downloading upstream icons.
+    rsvg-convert -w 1024 -h 1024 "icons/${QUALITY}/codium_cnl.svg" -o "$1"
   }
 fi
 
 if ! declare -F load_windows_ico &>/dev/null; then
   load_windows_ico() {
-    wget "https://raw.githubusercontent.com/VSCodium/icons/main/icons/win32/nobg/${COLOR}/paulo22s.ico" -O "$1"
+    # Generate multi-size .ico from local brand SVG.
+    rsvg-convert -w 1024 -h 1024 "icons/${QUALITY}/codium_cnl.svg" -o "code_ico_tmp.png"
+    convert "code_ico_tmp.png" -define icon:auto-resize=256,128,96,64,48,32,24,20,16 "$1"
+    rm -f code_ico_tmp.png
   }
 fi
 
@@ -128,11 +132,11 @@ build_server() { # {{{
   fi
 
   if [[ ! -f "${SRC_PREFIX}src/${QUALITY}/resources/server/code-192.png" ]]; then
-    convert -size "192x192" "${SRC_PREFIX}src/${QUALITY}/resources/linux/code.png" "${SRC_PREFIX}src/${QUALITY}/resources/server/code-192.png"
+    convert "${SRC_PREFIX}src/${QUALITY}/resources/linux/code.png" -resize "192x192" "${SRC_PREFIX}src/${QUALITY}/resources/server/code-192.png"
   fi
 
   if [[ ! -f "${SRC_PREFIX}src/${QUALITY}/resources/server/code-512.png" ]]; then
-    convert -size "512x512" "${SRC_PREFIX}src/${QUALITY}/resources/linux/code.png" "${SRC_PREFIX}src/${QUALITY}/resources/server/code-512.png"
+    convert "${SRC_PREFIX}src/${QUALITY}/resources/linux/code.png" -resize "512x512" "${SRC_PREFIX}src/${QUALITY}/resources/server/code-512.png"
   fi
 } # }}}
 
