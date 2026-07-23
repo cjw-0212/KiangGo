@@ -135,6 +135,11 @@ clean_outputs() {
     "src/${QUALITY}/resources/server" \
     "build/windows/msi/resources/${QUALITY}"
   rm -f "src/${QUALITY}/src/vs/workbench/browser/media/code-icon.svg"
+  rm -f \
+    "src/${QUALITY}/src/vs/workbench/browser/parts/editor/media/letterpress-light.svg" \
+    "src/${QUALITY}/src/vs/workbench/browser/parts/editor/media/letterpress-dark.svg" \
+    "src/${QUALITY}/src/vs/workbench/browser/parts/editor/media/letterpress-hcLight.svg" \
+    "src/${QUALITY}/src/vs/workbench/browser/parts/editor/media/letterpress-hcDark.svg"
   # 构建过程中的临时文件
   rm -f code_*.png code_logo.png code_ico_tmp.png ./*_512x512x32.png ./*_1_256x256x32.png
   echo "清理完成"
@@ -160,6 +165,10 @@ verify_outputs() {
     "src/${QUALITY}/resources/darwin/code.icns"
     "src/${QUALITY}/resources/server/favicon.ico"
     "src/${QUALITY}/src/vs/workbench/browser/media/code-icon.svg"
+    "src/${QUALITY}/src/vs/workbench/browser/parts/editor/media/letterpress-light.svg"
+    "src/${QUALITY}/src/vs/workbench/browser/parts/editor/media/letterpress-dark.svg"
+    "src/${QUALITY}/src/vs/workbench/browser/parts/editor/media/letterpress-hcLight.svg"
+    "src/${QUALITY}/src/vs/workbench/browser/parts/editor/media/letterpress-hcDark.svg"
   )
 
   for f in "${files[@]}"; do

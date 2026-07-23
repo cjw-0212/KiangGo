@@ -122,6 +122,22 @@ build_media() { # {{{
     cp "icons/${QUALITY}/codium_clt.svg" "${SRC_PREFIX}src/${QUALITY}/src/vs/workbench/browser/media/code-icon.svg"
     gsed -i 's|width="100" height="100"|width="1024" height="1024"|' "${SRC_PREFIX}src/${QUALITY}/src/vs/workbench/browser/media/code-icon.svg"
   fi
+
+  # Empty editor watermark (letterpress) — was still VSCodium until generated from brand SVG
+  if command -v python3 &> /dev/null; then
+    PYTHON_BIN="python3"
+  elif command -v python &> /dev/null; then
+    PYTHON_BIN="python"
+  else
+    echo "python/python3 could not be found (needed for letterpress icons)"
+    exit 1
+  fi
+
+  if [[ "${QUALITY}" == "insider" ]]; then
+    "${PYTHON_BIN}" "./icons/gen_letterpress.py" -i
+  else
+    "${PYTHON_BIN}" "./icons/gen_letterpress.py"
+  fi
 } # }}}
 
 build_server() { # {{{
