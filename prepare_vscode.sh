@@ -34,29 +34,29 @@ setpath_json() {
   set -x
 }
 
-setpath "product" "checksumFailMoreInfoUrl" "https://go.microsoft.com/fwlink/?LinkId=828886"
-setpath "product" "documentationUrl" "https://go.microsoft.com/fwlink/?LinkID=533484#vscode"
+setpath "product" "checksumFailMoreInfoUrl" "https://example.com/kianggo/checksum"
+setpath "product" "documentationUrl" "https://example.com/kianggo/docs"
 setpath_json "product" "extensionsGallery" '{"serviceUrl": "https://open-vsx.org/vscode/gallery", "itemUrl": "https://open-vsx.org/vscode/item", "latestUrlTemplate": "https://open-vsx.org/vscode/gallery/{publisher}/{name}/latest", "controlUrl": "https://raw.githubusercontent.com/EclipseFdn/publish-extensions/refs/heads/master/extension-control/extensions.json"}'
 
-setpath "product" "introductoryVideosUrl" "https://go.microsoft.com/fwlink/?linkid=832146"
-setpath "product" "keyboardShortcutsUrlLinux" "https://go.microsoft.com/fwlink/?linkid=832144"
-setpath "product" "keyboardShortcutsUrlMac" "https://go.microsoft.com/fwlink/?linkid=832143"
-setpath "product" "keyboardShortcutsUrlWin" "https://go.microsoft.com/fwlink/?linkid=832145"
-setpath "product" "licenseUrl" "https://github.com/VSCodium/vscodium/blob/master/LICENSE"
-setpath_json "product" "linkProtectionTrustedDomains" '["https://open-vsx.org"]'
-setpath "product" "releaseNotesUrl" "https://go.microsoft.com/fwlink/?LinkID=533483#vscode"
-setpath "product" "reportIssueUrl" "https://github.com/VSCodium/vscodium/issues/new"
-setpath "product" "requestFeatureUrl" "https://go.microsoft.com/fwlink/?LinkID=533482"
-setpath "product" "tipsAndTricksUrl" "https://go.microsoft.com/fwlink/?linkid=852118"
-setpath "product" "twitterUrl" "https://go.microsoft.com/fwlink/?LinkID=533687"
+setpath "product" "introductoryVideosUrl" "https://example.com/kianggo/videos"
+setpath "product" "keyboardShortcutsUrlLinux" "https://example.com/kianggo/shortcuts/linux"
+setpath "product" "keyboardShortcutsUrlMac" "https://example.com/kianggo/shortcuts/mac"
+setpath "product" "keyboardShortcutsUrlWin" "https://example.com/kianggo/shortcuts/win"
+setpath "product" "licenseUrl" "https://example.com/kianggo/license"
+setpath_json "product" "linkProtectionTrustedDomains" '["https://open-vsx.org", "https://example.com"]'
+setpath "product" "releaseNotesUrl" "https://example.com/kianggo/releases"
+setpath "product" "reportIssueUrl" "https://example.com/kianggo/issues/new"
+setpath "product" "requestFeatureUrl" "https://example.com/kianggo/feature-request"
+setpath "product" "tipsAndTricksUrl" "https://example.com/kianggo/tips"
+setpath "product" "twitterUrl" "https://example.com/kianggo"
 
 if [[ "${DISABLE_UPDATE}" != "yes" ]]; then
-  setpath "product" "updateUrl" "https://raw.githubusercontent.com/VSCodium/versions/refs/heads/master"
+  setpath "product" "updateUrl" "https://example.com/kianggo/update"
 
   if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
-    setpath "product" "downloadUrl" "https://github.com/VSCodium/vscodium-insiders/releases"
+    setpath "product" "downloadUrl" "https://example.com/kianggo/download/insiders"
   else
-    setpath "product" "downloadUrl" "https://github.com/VSCodium/vscodium/releases"
+    setpath "product" "downloadUrl" "https://example.com/kianggo/download"
   fi
 
   # if [[ "${OS_NAME}" == "windows" ]]; then
@@ -93,32 +93,33 @@ if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
   setpath "product" "win32ContextMenu.x64.clsid" "90AAD229-85FD-43A3-B82D-8598A88829CF"
   setpath "product" "win32ContextMenu.arm64.clsid" "7544C31C-BDBF-4DDF-B15E-F73A46D6723D"
 else
-  setpath "product" "nameShort" "VSCodium"
-  setpath "product" "nameLong" "VSCodium"
-  setpath "product" "applicationName" "codium"
-  setpath "product" "linuxIconName" "vscodium"
+  setpath "product" "nameShort" "KiangGo"
+  setpath "product" "nameLong" "KiangGo"
+  setpath "product" "applicationName" "kianggo"
+  setpath "product" "dataFolderName" ".kianggo"
+  setpath "product" "linuxIconName" "kianggo"
   setpath "product" "quality" "stable"
-  setpath "product" "urlProtocol" "vscodium"
-  setpath "product" "serverApplicationName" "codium-server"
-  setpath "product" "serverDataFolderName" ".vscodium-server"
-  setpath "product" "darwinBundleIdentifier" "com.vscodium"
-  setpath "product" "win32AppUserModelId" "VSCodium.VSCodium"
-  setpath "product" "win32DirName" "VSCodium"
-  setpath "product" "win32MutexName" "vscodium"
-  setpath "product" "win32NameVersion" "VSCodium"
-  setpath "product" "win32RegValueName" "VSCodium"
-  setpath "product" "win32ShellNameShort" "VSCodium"
-  setpath "product" "win32AppId" "{{763CBF88-25C6-4B10-952F-326AE657F16B}"
-  setpath "product" "win32x64AppId" "{{88DA3577-054F-4CA1-8122-7D820494CFFB}"
-  setpath "product" "win32arm64AppId" "{{67DEE444-3D04-4258-B92A-BC1F0FF2CAE4}"
-  setpath "product" "win32UserAppId" "{{0FD05EB4-651E-4E78-A062-515204B47A3A}"
-  setpath "product" "win32x64UserAppId" "{{2E1F05D1-C245-4562-81EE-28188DB6FD17}"
-  setpath "product" "win32arm64UserAppId" "{{57FD70A5-1B8D-4875-9F40-C5553F094828}"
-  setpath "product" "tunnelApplicationName" "codium-tunnel"
-  setpath "product" "win32TunnelServiceMutex" "vscodium-tunnelservice"
-  setpath "product" "win32TunnelMutex" "vscodium-tunnel"
-  setpath "product" "win32ContextMenu.x64.clsid" "D910D5E6-B277-4F4A-BDC5-759A34EEE25D"
-  setpath "product" "win32ContextMenu.arm64.clsid" "4852FC55-4A84-4EA1-9C86-D53BE3DF83C0"
+  setpath "product" "urlProtocol" "kianggo"
+  setpath "product" "serverApplicationName" "kianggo-server"
+  setpath "product" "serverDataFolderName" ".kianggo-server"
+  setpath "product" "darwinBundleIdentifier" "com.kianggo"
+  setpath "product" "win32AppUserModelId" "KiangGo.KiangGo"
+  setpath "product" "win32DirName" "KiangGo"
+  setpath "product" "win32MutexName" "kianggo"
+  setpath "product" "win32NameVersion" "KiangGo"
+  setpath "product" "win32RegValueName" "KiangGo"
+  setpath "product" "win32ShellNameShort" "KiangGo"
+  setpath "product" "win32AppId" "{{75AC8F6E-2C14-458D-8483-07A5282BD8E0}"
+  setpath "product" "win32x64AppId" "{{8CF27AA0-74BB-4F57-908E-50B3FD4F115A}"
+  setpath "product" "win32arm64AppId" "{{4CC151DC-6626-49A4-8DFC-06BF595C50C5}"
+  setpath "product" "win32UserAppId" "{{9AF54E2C-25D0-4F7F-995D-3175825507A0}"
+  setpath "product" "win32x64UserAppId" "{{1608856E-9E98-47CA-B4E6-B6FA19BA4388}"
+  setpath "product" "win32arm64UserAppId" "{{4E002CF1-9AD1-4E38-B7D9-FFC1EE1160C0}"
+  setpath "product" "tunnelApplicationName" "kianggo-tunnel"
+  setpath "product" "win32TunnelServiceMutex" "kianggo-tunnelservice"
+  setpath "product" "win32TunnelMutex" "kianggo-tunnel"
+  setpath "product" "win32ContextMenu.x64.clsid" "76938C85-87DF-4BC7-87E4-BA9F2C82FFE9"
+  setpath "product" "win32ContextMenu.arm64.clsid" "9B767EE3-89C6-42DD-AAC5-DC113094C0DE"
 fi
 
 setpath_json "product" "tunnelApplicationConfig" '{}'
@@ -233,16 +234,16 @@ cp package.json{,.bak}
 
 setpath "package" "version" "${RELEASE_VERSION%-insider}"
 
-replace 's|Microsoft Corporation|VSCodium|' package.json
+replace 's|Microsoft Corporation|KiangGo|' package.json
 
 cp resources/server/manifest.json{,.bak}
 
 if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
-  setpath "resources/server/manifest" "name" "VSCodium - Insiders"
-  setpath "resources/server/manifest" "short_name" "VSCodium - Insiders"
+  setpath "resources/server/manifest" "name" "KiangGo - Insiders"
+  setpath "resources/server/manifest" "short_name" "KiangGo - Insiders"
 else
-  setpath "resources/server/manifest" "name" "VSCodium"
-  setpath "resources/server/manifest" "short_name" "VSCodium"
+  setpath "resources/server/manifest" "name" "KiangGo"
+  setpath "resources/server/manifest" "short_name" "KiangGo"
 fi
 
 # announcements
@@ -250,46 +251,46 @@ replace "s|\\[\\/\\* BUILTIN_ANNOUNCEMENTS \\*\\/\\]|$( tr -d '\n' < ../announce
 
 ../undo_telemetry.sh
 
-replace 's|Microsoft Corporation|VSCodium|' build/lib/electron.ts
-replace 's|([0-9]) Microsoft|\1 VSCodium|' build/lib/electron.ts
+replace 's|Microsoft Corporation|KiangGo|' build/lib/electron.ts
+replace 's|([0-9]) Microsoft|\1 KiangGo|' build/lib/electron.ts
 
 if [[ "${OS_NAME}" == "linux" ]]; then
   # microsoft adds their apt repo to sources
   # unless the app name is code-oss
-  # as we are renaming the application to vscodium
+  # as we are renaming the application to kianggo
   # we need to edit a line in the post install template
   if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
-    sed -i "s/code-oss/codium-insiders/" resources/linux/debian/postinst.template
+    sed -i "s/code-oss/kianggo-insiders/" resources/linux/debian/postinst.template
   else
-    sed -i "s/code-oss/codium/" resources/linux/debian/postinst.template
+    sed -i "s/code-oss/kianggo/" resources/linux/debian/postinst.template
   fi
 
   # fix the packages metadata
   # code.appdata.xml
-  sed -i 's|Visual Studio Code|VSCodium|g' resources/linux/code.appdata.xml
-  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/VSCodium/vscodium#download-install|' resources/linux/code.appdata.xml
-  sed -i 's|https://code.visualstudio.com/home/home-screenshot-linux-lg.png|https://vscodium.com/img/vscodium.png|' resources/linux/code.appdata.xml
-  sed -i 's|https://code.visualstudio.com|https://vscodium.com|' resources/linux/code.appdata.xml
+  sed -i 's|Visual Studio Code|KiangGo|g' resources/linux/code.appdata.xml
+  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://example.com/kianggo/docs|' resources/linux/code.appdata.xml
+  sed -i 's|https://code.visualstudio.com/home/home-screenshot-linux-lg.png|https://example.com/kianggo/img/kianggo.png|' resources/linux/code.appdata.xml
+  sed -i 's|https://code.visualstudio.com|https://example.com/kianggo|' resources/linux/code.appdata.xml
 
   # control.template
-  sed -i 's|Microsoft Corporation <vscode-linux@microsoft.com>|VSCodium Team https://github.com/VSCodium/vscodium/graphs/contributors|'  resources/linux/debian/control.template
-  sed -i 's|Visual Studio Code|VSCodium|g' resources/linux/debian/control.template
-  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/VSCodium/vscodium#download-install|' resources/linux/debian/control.template
-  sed -i 's|https://code.visualstudio.com|https://vscodium.com|' resources/linux/debian/control.template
+  sed -i 's|Microsoft Corporation <vscode-linux@microsoft.com>|KiangGo https://example.com/kianggo|'  resources/linux/debian/control.template
+  sed -i 's|Visual Studio Code|KiangGo|g' resources/linux/debian/control.template
+  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://example.com/kianggo/docs|' resources/linux/debian/control.template
+  sed -i 's|https://code.visualstudio.com|https://example.com/kianggo|' resources/linux/debian/control.template
 
   # code.spec.template
-  sed -i 's|Microsoft Corporation|VSCodium Team|' resources/linux/rpm/code.spec.template
-  sed -i 's|Visual Studio Code Team <vscode-linux@microsoft.com>|VSCodium Team https://github.com/VSCodium/vscodium/graphs/contributors|' resources/linux/rpm/code.spec.template
-  sed -i 's|Visual Studio Code|VSCodium|' resources/linux/rpm/code.spec.template
-  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/VSCodium/vscodium#download-install|' resources/linux/rpm/code.spec.template
-  sed -i 's|https://code.visualstudio.com|https://vscodium.com|' resources/linux/rpm/code.spec.template
+  sed -i 's|Microsoft Corporation|KiangGo|' resources/linux/rpm/code.spec.template
+  sed -i 's|Visual Studio Code Team <vscode-linux@microsoft.com>|KiangGo https://example.com/kianggo|' resources/linux/rpm/code.spec.template
+  sed -i 's|Visual Studio Code|KiangGo|' resources/linux/rpm/code.spec.template
+  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://example.com/kianggo/docs|' resources/linux/rpm/code.spec.template
+  sed -i 's|https://code.visualstudio.com|https://example.com/kianggo|' resources/linux/rpm/code.spec.template
 
   # snapcraft.yaml
-  sed -i 's|Visual Studio Code|VSCodium|' resources/linux/rpm/code.spec.template
+  sed -i 's|Visual Studio Code|KiangGo|' resources/linux/rpm/code.spec.template
 elif [[ "${OS_NAME}" == "windows" ]]; then
   # code.iss
-  sed -i 's|https://code.visualstudio.com|https://vscodium.com|' build/win32/code.iss
-  sed -i 's|Microsoft Corporation|VSCodium|' build/win32/code.iss
+  sed -i 's|https://code.visualstudio.com|https://example.com/kianggo|' build/win32/code.iss
+  sed -i 's|Microsoft Corporation|KiangGo|' build/win32/code.iss
 fi
 
 cd ..
