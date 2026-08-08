@@ -1,0 +1,59 @@
+diff --git a/build/gulpfile.vscode.ts b/build/gulpfile.vscode.ts
+index bac039b8..2d18f7db 100644
+--- a/build/gulpfile.vscode.ts
++++ b/build/gulpfile.vscode.ts
+@@ -536,11 +536,23 @@ function patchWin32DependenciesTask(destinationFolderName: string) {
+ 
+ 	return async () => {
+ 		const versionedResourcesFolder = util.getVersionedResourcesFolder('win32', commit!);
+-		const deps = (await Promise.all([
++		const rawDeps = (await Promise.all([
+ 			glob('**/*.node', { cwd, ignore: 'extensions/node_modules/@parcel/watcher/**' }),
+ 			glob('**/rg.exe', { cwd }),
+ 			glob('**/tgrep.exe', { cwd }),
+ 			glob('**/*explorer_command*.dll', { cwd }),
+ 		])).flatMap(o => o);
++		const foreignNativePattern = /(?:^|[\\/])(?:x64|arm64|arm|ia32)-(?:linux|darwin|linuxmusl)(?:[\\/]|$)|(?:^|[\\/])(?:linux|darwin|linuxmusl)-(?:x64|arm64|arm|ia32)(?:[\\/]|$)/i;
++		const deps = rawDeps.filter(dep => {
++			if (!dep.endsWith('.node')) {
++				return true;
++			}
++
++			return !foreignNativePattern.test(dep.replace(/\\/g, '/'));
++		});
++		const skippedCount = rawDeps.length - deps.length;
++		if (skippedCount > 0) {
++			console.log(`[patchWin32DependenciesTask] Skipping ${skippedCount} non-win32 native module(s) before rcedit.`);
++		}
+ 		const packageJson = JSON.parse(await fs.promises.readFile(path.join(cwd, versionedResourcesFolder, 'resources', 'app', 'package.json'), 'utf8'));
+ 		const product = JSON.parse(await fs.promises.readFile(path.join(cwd, versionedResourcesFolder, 'resources', 'app', 'product.json'), 'utf8'));
+ 		const baseVersion = packageJson.version.replace(/-.*$/, '');
+diff --git a/build/gulpfile.reh.ts b/build/gulpfile.reh.ts
+index 46925452..7c9ec6be 100644
+--- a/build/gulpfile.reh.ts
++++ b/build/gulpfile.reh.ts
+@@ -490,10 +490,22 @@ function patchWin32DependenciesTask(destinationFolderName: string) {
+ 	const cwd = path.join(BUILD_ROOT, destinationFolderName);
+ 
+ 	return async () => {
+-		const deps = (await Promise.all([
++		const rawDeps = (await Promise.all([
+ 			promisify(glob)('**/*.node', { cwd }),
+ 			promisify(glob)('**/rg.exe', { cwd }),
+ 			promisify(glob)('**/tgrep.exe', { cwd }),
+ 		])).flatMap(o => o);
++		const foreignNativePattern = /(?:^|[\\/])(?:x64|arm64|arm|ia32)-(?:linux|darwin|linuxmusl)(?:[\\/]|$)|(?:^|[\\/])(?:linux|darwin|linuxmusl)-(?:x64|arm64|arm|ia32)(?:[\\/]|$)/i;
++		const deps = rawDeps.filter(dep => {
++			if (!dep.endsWith('.node')) {
++				return true;
++			}
++
++			return !foreignNativePattern.test(dep.replace(/\\/g, '/'));
++		});
++		const skippedCount = rawDeps.length - deps.length;
++		if (skippedCount > 0) {
++			console.log(`[patchWin32DependenciesTask] Skipping ${skippedCount} non-win32 native module(s) before rcedit.`);
++		}
+ 		const packageJsonContents = JSON.parse(await fs.promises.readFile(path.join(cwd, 'package.json'), 'utf8'));
+ 		const productContents = JSON.parse(await fs.promises.readFile(path.join(cwd, 'product.json'), 'utf8'));
+ 		const baseVersion = packageJsonContents.version.replace(/-.*$/, '');
