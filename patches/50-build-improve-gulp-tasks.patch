@@ -13,12 +13,13 @@ index 53987f88..b897c6c6 100644
 +
 +			const prepackTask = task.define(`vscode${dashed(minified)}-prepack`, task.series(
  				copyCodiconsTask,
-@@ -673,2 +674,6 @@ BUILD_TARGETS.forEach(buildTarget => {
+@@ -673,2 +674,7 @@ BUILD_TARGETS.forEach(buildTarget => {
  				compileExtensionMediaBuildTask,
 +			));
 +			task.task(prepackTask);
 +
 +			const packingTask = task.define(`vscode${dashed(platform)}${dashed(arch)}${dashed(minified)}-packing`, task.series(
++				compileCopilotExtensionBuildTask,
  				writeISODate('out-build'),
 @@ -677,5 +682,11 @@ BUILD_TARGETS.forEach(buildTarget => {
  			));
@@ -34,12 +35,13 @@ index 53987f88..b897c6c6 100644
 +			const prepackTask = task.define(`vscode${dashed(minified)}-prepack`, task.series(
 +				compileBuildWithoutManglingTask,
  				cleanExtensionsBuildTask,
-@@ -685,4 +696,14 @@ BUILD_TARGETS.forEach(buildTarget => {
+@@ -685,4 +696,15 @@ BUILD_TARGETS.forEach(buildTarget => {
  				minified ? minifyVSCodeTask : bundleVSCodeTask,
 +			));
 +			task.task(prepackTask);
 +
 +			const packingTask = task.define(`vscode${dashed(platform)}${dashed(arch)}${dashed(minified)}-packing`, task.series(
++				compileCopilotExtensionBuildTask,
  				vscodeTaskCI
  			));
 +			task.task(packingTask);
