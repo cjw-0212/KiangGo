@@ -23,8 +23,8 @@ export VSCODE_SKIP_NODE_VERSION_CHECK="yes"
 while getopts ":ilops" opt; do
   case "$opt" in
     i)
-      export ASSETS_REPOSITORY="VSCodium/vscodium-insiders"
-      export BINARY_NAME="codium-insiders"
+      export ASSETS_REPOSITORY="example/kianggo"
+      export BINARY_NAME="kianggo-insiders"
       export VSCODE_QUALITY="insider"
       ;;
     l)
